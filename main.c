@@ -6,7 +6,7 @@
 /*   By: erzhuo <erzhuo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 13:43:58 by erzhuo            #+#    #+#             */
-/*   Updated: 2026/07/28 13:53:10 by erzhuo           ###   ########.fr       */
+/*   Updated: 2026/08/01 15:01:09 by erzhuo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@
 int	main(int ac, char **av)
 {
 	t_table	table;
-	int		i;
 
-	i = 0;
 	if (ac != 5 && ac != 6)
 		return (error_msg("usage: n_philo die eat sleep [must_eat]"));
 	if (parse_args(&table, ac, av))

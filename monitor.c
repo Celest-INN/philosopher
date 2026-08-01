@@ -6,7 +6,7 @@
 /*   By: erzhuo <erzhuo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 13:43:20 by erzhuo            #+#    #+#             */
-/*   Updated: 2026/07/28 13:55:35 by erzhuo           ###   ########.fr       */
+/*   Updated: 2026/08/01 15:32:21 by erzhuo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	announce_death(t_philo *philo)
 	timestamp = get_time() - philo->table->start_time;
 	printf("%ld %d died\n", timestamp, philo->id);
 	pthread_mutex_unlock(&philo->table->stop_lock);
-	pthread_mutex_lock(&philo->table->print_lock);
+	pthread_mutex_unlock(&philo->table->print_lock);
 }
 
 static int	check_death(t_table *table)
@@ -66,12 +66,12 @@ static int	all_ate_enough(t_table *table)
 	while (i < table->n_philo)
 	{
 		pthread_mutex_lock(&table->philos[i].meal_lock);
-		if (table->must_eat > table->philos[i].meals_eaten)
+		if (table->philos[i].meals_eaten >= table->must_eat)
 			full++;
 		pthread_mutex_unlock(&table->philos[i].meal_lock);
 		i++;
 	}
-	return (full == table->must_eat);
+	return (full == table->n_philo);
 }
 
 void	*monitor(void *arg)

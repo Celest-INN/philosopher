@@ -6,7 +6,7 @@
 /*   By: erzhuo <erzhuo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 13:43:26 by erzhuo            #+#    #+#             */
-/*   Updated: 2026/07/28 15:57:05 by erzhuo           ###   ########.fr       */
+/*   Updated: 2026/08/01 18:35:12 by erzhuo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ void	*routine(void *arg)
 		print_status(philo, "is sleeping");
 		ft_usleep(philo->table->time_to_sleep);
 		print_status(philo, "is thinking");
+		if (philo->table->n_philo % 2 == 1)
+			ft_usleep((philo->table->time_to_die
+					- philo->table->time_to_eat
+					- philo->table->time_to_sleep) / 2);
 	}
 	return (NULL);
 }
